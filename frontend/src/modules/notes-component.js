@@ -5,8 +5,17 @@ class NotesComponent extends Component {
     return (
       <Fragment>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 m-3 text-gray-800">Notes Page</h1>
+          <h1 class="h3 mb-2 mt-3 text-gray-800">Notes Page</h1>
         </div>
+
+        <p class="mb-10">
+          DataTables is a third party plugin that is used to generate the demo
+          table below. For more information about DataTables, please visit the{" "}
+          <a target="_blank" href="https://datatables.net">
+            official DataTables documentation
+          </a>
+          .
+        </p>
 
         <div className="row">
           <div class="card shadow mb-4 col-lg-3 m-2">

@@ -6,6 +6,7 @@ import Sidebar from "../layout/sidebar";
 import Topbar from "../layout/top-navbar";
 import Notes from "../../app/notes-page";
 import EditNotes from "../../app/edit-page";
+import CreateNotes from "../../modules/create-component";
 
 
 class LoginComponent extends Component {
@@ -23,12 +24,13 @@ class LoginComponent extends Component {
                 <div class="container-fluid">
                     <Route exact path="/" component={Notes}/>
                     <Route exact path="/edit" component={EditNotes}/>
+                    <Route exact path="/create" component={CreateNotes}/>
                 </div>
 
                 <footer class="sticky-footer bg-white">
                   <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                      <span>Copyright &copy; Your Website 2019</span>
+                      <span>Copyright &copy; Notes Management 2020</span>
                     </div>
                   </div>
                 </footer>
