@@ -17,24 +17,36 @@ class CreateComponent extends Component {
         </p>
 
         <div className="row">
-          <form class="col-lg-12">
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Notes Title</label>
-              <input
-                type="email"
-                class="form-control"
-                id="exampleFormControlInput1"
-              />
+          <div className="card shadow mb-4 col-lg-12">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">
+                New Note
+              </h6>
             </div>
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">Notes Body</label>
-              <textarea
-                class="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
-              ></textarea>
+            <div className="card-body">
+              <form class="m-2 col-lg-12">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Notes Title</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Notes Body</label>
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                  ></textarea>
+                </div>
+                <button class="btn btn-primary float-right" type="submit">
+                  Submit form
+                </button>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </Fragment>
     );
