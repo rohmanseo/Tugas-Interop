@@ -4,8 +4,6 @@ import "../assets/css/sb-admin-2.min.css";
 import "../assets/css/style.css";
 
 // import component
-import Sidebar from "../../src/common/layout/sidebar";
-import Topbar from "../../src/common/layout/top-navbar";
 import Notes from "../../src/modules/notes-component";
 
 class NotesPage extends Component {
@@ -19,13 +17,35 @@ class NotesPage extends Component {
         "http://newsapi.org/v2/everything?q=bitcoin&from=2020-03-27&sortBy=publishedAt&apiKey=59cd337ba1fc4ae2ab7d748848627be8"
       )
       .then((res) => {
-        const notes = res.data.articles;
-        console.log(notes);
+        this.setState({
+          notes: res.data.articles,
+        });
       });
   }
 
   render() {
-    return <Notes />;
+    return (
+      <Fragment>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-2 mt-3 text-gray-800">Notes Page</h1>
+        </div>
+
+        <p class="mb-10">
+          DataTables is a third party plugin that is used to generate the demo
+          table below. For more information about DataTables, please visit the{" "}
+          <a target="_blank" href="https://datatables.net">
+            official DataTables documentation
+          </a>
+          .
+        </p>
+
+        <div className="row">
+          {this.state.notes.map((notes) => {
+            return <Notes title={notes.author} body={notes.description} />;
+          })}
+        </div>
+      </Fragment>
+    );
   }
 }
 //apa?
