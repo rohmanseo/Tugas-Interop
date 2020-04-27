@@ -77,7 +77,6 @@ class TopBar extends Component {
           <div class="topbar-divider d-none d-sm-block"></div>
 
           <li class="nav-item dropdown no-arrow">
-            <LoginComponent/>
           </li>
         </ul>
       </nav>
