@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import {Link} from 'react-router-dom'
 
 class LandingComponent extends Component {
   render() {
@@ -78,9 +79,10 @@ class LandingComponent extends Component {
                           </a>
                         </div>
                         <div class="text-center">
-                          <a class="small" href="register.html">
-                            Create an Account!
-                          </a>
+                          <Link class="nav-link" to="/register">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <a class="small">Create an Account!</a>
+                          </Link>
                         </div>
                       </div>
                     </div>

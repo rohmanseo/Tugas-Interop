@@ -8,6 +8,7 @@ import Notes from "../../app/notes-page";
 import EditNotes from "../../app/edit-page";
 import CreateNotes from "../../modules/create-component";
 import LandingComponent from "../../modules/login-component";
+import RegisterComponent from "../../modules/register-component";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
       <>
         <Switch>
           <Route exact path="/" component={LandingComponent} />
+          <Route exact path="/register" component={RegisterComponent} />
           <Route path="/dashboard" component={DashboardComponent} />
         </Switch>
       </>
