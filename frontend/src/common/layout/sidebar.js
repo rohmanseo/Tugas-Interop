@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom';
 
 class sidebar extends Component{
     render(){
@@ -16,33 +17,33 @@ class sidebar extends Component{
             <hr class="sidebar-divider my-0"/>
       
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <Link class="nav-link" to="/">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>All Notes</span></a>
+                <span>All Notes</span></Link>
             </li>
 
             <hr class="sidebar-divider my-0"/>
       
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <Link class="nav-link" to="/create">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Create Notes</span></a>
+                <span>Create Notes</span></Link>
             </li>
 
             <hr class="sidebar-divider my-0"/>
             
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <Link class="nav-link" to="/edit">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Edit Notes</span></a>
+                <span>Edit Notes</span></Link>
             </li>
 
             <hr class="sidebar-divider my-0"/>
             
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <Link class="nav-link" to="/about">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>About</span></a>
+                <span>About</span></Link>
             </li>
       
           </ul>

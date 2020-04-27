@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import Topbar from '../src/common/layout/top-navbar';
-import App from './app/notes-page';
+import Router from './common/router/router';
 import * as serviceWorker from './serviceWorker';
+import {BrowserRouter} from "react-router-dom";
 
-ReactDOM.render(<React.StrictMode><App/></React.StrictMode>,document.getElementById('root'));
+ReactDOM.render(<BrowserRouter basename={process.env.PUBLIC_URL}><Router /></BrowserRouter>,document.getElementById('root'));
 
 serviceWorker.unregister();
