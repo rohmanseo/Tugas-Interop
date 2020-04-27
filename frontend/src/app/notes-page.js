@@ -1,8 +1,7 @@
-import React, { Component, Fragment } from "react";
-import axios from "axios";
-import "../assets/css/sb-admin-2.min.css";
-import "../assets/css/style.css";
-
+import React, {Component,Fragment} from 'react'
+import '../assets/css/sb-admin-2.min.css'
+import '../assets/css/style.css'
+import axios from 'axios'
 // import component
 import Notes from "../../src/modules/notes-component";
 

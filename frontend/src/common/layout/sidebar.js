@@ -17,7 +17,7 @@ class sidebar extends Component{
             <hr class="sidebar-divider my-0"/>
       
             <li class="nav-item">
-              <Link class="nav-link" to="/">
+              <Link class="nav-link" to="/dashboard/">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>All Notes</span></Link>
             </li>
@@ -25,7 +25,7 @@ class sidebar extends Component{
             <hr class="sidebar-divider my-0"/>
       
             <li class="nav-item">
-              <Link class="nav-link" to="/create">
+              <Link class="nav-link" to="/dashboard/create">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Create Notes</span></Link>
             </li>
@@ -33,7 +33,7 @@ class sidebar extends Component{
             <hr class="sidebar-divider my-0"/>
             
             <li class="nav-item">
-                <Link class="nav-link" to="/edit">
+                <Link class="nav-link" to="/dashboard/edit">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Edit Notes</span></Link>
             </li>
@@ -41,7 +41,7 @@ class sidebar extends Component{
             <hr class="sidebar-divider my-0"/>
             
             <li class="nav-item">
-                <Link class="nav-link" to="/about">
+                <Link class="nav-link" to="/dashboard/about">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>About</span></Link>
             </li>

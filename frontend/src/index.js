@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter } from 'react-router-dom';
 import './index.css';
-import Router from './common/router/router';
+import App from './common/router/router';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter} from "react-router-dom";
 
-ReactDOM.render(<BrowserRouter basename={process.env.PUBLIC_URL}><Router /></BrowserRouter>,document.getElementById('root'));
+ReactDOM.render(<BrowserRouter basename={process.env.PUBLIC_URL}><App/></BrowserRouter>,document.getElementById('root'));
 
 serviceWorker.unregister();
