@@ -1,7 +1,63 @@
 import React, { Component, Fragment } from "react";
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+const axios = require('axios');
+console.log(cookies.get('access_token'));
+
+// axios.post('http://192.168.0.3/api/auth/login', {
+//   email: "u50@mail.com",
+//   password: "masukaja"
+// })
+// .then(function (response) {
+//   console.log(response)
+//   cookies.set('access_token', response, { path: '/' });
+// })
+// .catch(function (error) {
+//   console.log(error)
+// });
 
 class LandingComponent extends Component {
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      email : "",
+      password : "",
+    }
+
+    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handlePasswordChange = this.handlePasswordChange.bind(this)
+
+  }
+
+  login = (e) => {
+    axios.post('http://127.0.0.1:8000/api/auth/login', {
+      email: this.state.email,
+      password: this.state.password
+      
+    })
+    .then(function (response) {
+      console.log(response.data['access_token'])
+      cookies.set('access_token', response.data['access_token'], { path: '/' });
+
+    })
+    .catch(function (error) {
+      console.log(error)
+    });
+    e.preventDefault()
+  
+  }
+
+  handleEmailChange(e){
+    this.setState({email: e.target.value});
+    console.log(this.state.email)
+ }
+  handlePasswordChange(e){
+  this.setState({password: e.target.value});
+  console.log(this.state.password)
+}
+
   render() {
     return (
       <body class="bg-gradient-primary">
@@ -17,9 +73,11 @@ class LandingComponent extends Component {
                         <div class="text-center">
                           <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                         </div>
-                        <form class="user">
+                        <form class="user" onSubmit={this.login}>
                           <div class="form-group">
                             <input
+                            value={this.state.email}
+                            onChange={this.handleEmailChange}
                               type="email"
                               class="form-control form-control-user"
                               id="exampleInputEmail"
@@ -29,6 +87,8 @@ class LandingComponent extends Component {
                           </div>
                           <div class="form-group">
                             <input
+                              value={this.state.password}
+                              onChange={this.handlePasswordChange}
                               type="password"
                               class="form-control form-control-user"
                               id="exampleInputPassword"
@@ -50,12 +110,8 @@ class LandingComponent extends Component {
                               </label>
                             </div>
                           </div>
-                          <a
-                            href="index.html"
-                            class="btn btn-primary btn-user btn-block"
-                          >
-                            Login
-                          </a>
+                      
+                      <button type="submit" class="btn btn-primary btn-user btn-block" >login</button>
                           <hr />
                           <a
                             href="index.html"
