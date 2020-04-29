@@ -1,6 +1,32 @@
 import React, { Component, Fragment } from "react";
 
 class CreateComponent extends Component {
+  state = {
+    notes: [],
+    notesData: {
+      id: "",
+      userId: "",
+      title: "",
+      note: "",
+    },
+  };
+
+  handleFormChange = (event) => {
+    let formNewNotes = { ...this.state.notesData };
+    formNewNotes['id'] = new Date().getTime();
+    formNewNotes[event.target.name] = event.target.value;
+    {
+      this.setState(
+        {
+          notesData: formNewNotes,
+        },
+        () => {
+          console.log(this.state.notesData);
+        }
+      );
+    }
+  };
+
   render() {
     return (
       <Fragment>
@@ -19,9 +45,7 @@ class CreateComponent extends Component {
         <div className="row">
           <div className="card shadow mb-4 col-lg-12">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">
-                New Note
-              </h6>
+              <h6 class="m-0 font-weight-bold text-primary">New Note</h6>
             </div>
             <div className="card-body">
               <form class="m-2 col-lg-12">
@@ -29,16 +53,20 @@ class CreateComponent extends Component {
                   <label for="exampleFormControlInput1">Notes Title</label>
                   <input
                     type="email"
+                    name="title"
                     class="form-control"
                     id="exampleFormControlInput1"
+                    onChange={this.handleFormChange}
                   />
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Notes Body</label>
                   <textarea
                     class="form-control"
+                    name="note"
                     id="exampleFormControlTextarea1"
                     rows="3"
+                    onChange={this.handleFormChange}
                   ></textarea>
                 </div>
                 <button class="btn btn-primary float-right" type="submit">
