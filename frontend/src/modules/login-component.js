@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 class LandingComponent extends Component {
   render() {
     return (
+      <html>
       <body class="bg-gradient-primary">
         <div class="container">
           <div class="row justify-content-center">
@@ -93,6 +94,7 @@ class LandingComponent extends Component {
           </div>
         </div>
       </body>
+      </html>
     );
   }
 }
