@@ -13,7 +13,7 @@ class NotesPage extends Component {
   componentDidMount() {
     axios
       .get(
-        "http://newsapi.org/v2/everything?q=bitcoin&from=2020-03-27&sortBy=publishedAt&apiKey=59cd337ba1fc4ae2ab7d748848627be8"
+        "http://127.0.0.1:8000/api/note"
       )
       .then((res) => {
         this.setState({

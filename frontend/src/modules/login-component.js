@@ -31,6 +31,10 @@ class LandingComponent extends Component {
 
   }
 
+  handleLogin =()=>{
+    this.login();
+  }
+
   login = (e) => {
     axios.post('http://127.0.0.1:8000/api/auth/login', {
       email: this.state.email,
@@ -112,7 +116,7 @@ class LandingComponent extends Component {
                             </div>
                           </div>
                       
-                      <button type="submit" class="btn btn-primary btn-user btn-block" >login</button>
+                      <button type="submit" class="btn btn-primary btn-user btn-block" onClick={this.handleLogin}>login</button>
                           <hr />
                           <a
                             href="index.html"
