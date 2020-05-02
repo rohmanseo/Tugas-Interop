@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import axios from "axios";
 
 class CreateComponent extends Component {
   state = {
@@ -13,18 +14,29 @@ class CreateComponent extends Component {
 
   handleFormChange = (event) => {
     let formNewNotes = { ...this.state.notesData };
-    formNewNotes['id'] = new Date().getTime();
+    formNewNotes["id"] = new Date().getTime();
     formNewNotes[event.target.name] = event.target.value;
     {
-      this.setState(
-        {
-          notesData: formNewNotes,
-        },
-        () => {
-          console.log(this.state.notesData);
-        }
-      );
+      this.setState({
+        notesData: formNewNotes,
+      });
     }
+  };
+
+  handleCreate = () => {
+    this.createNote();
+  };
+
+  createNote = () => {
+    axios.post(
+      'http://127.0.0.1:8000/api/note',
+      {
+        id: this.state.notesData.id,
+        title: this.state.notesData.title,
+        note: this.state.notesData.note
+      },
+      (err) => console.log("error : ", err)
+    );
   };
 
   render() {
@@ -52,7 +64,7 @@ class CreateComponent extends Component {
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Notes Title</label>
                   <input
-                    type="email"
+                    type="text"
                     name="title"
                     class="form-control"
                     id="exampleFormControlInput1"
@@ -69,7 +81,11 @@ class CreateComponent extends Component {
                     onChange={this.handleFormChange}
                   ></textarea>
                 </div>
-                <button class="btn btn-primary float-right" type="submit">
+                <button
+                  class="btn btn-primary float-right"
+                  type="submit"
+                  onClick={this.handleCreate}
+                >
                   Submit form
                 </button>
               </form>

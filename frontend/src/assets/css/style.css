@@ -1,3 +1,16 @@
 .mb-4, .my-4 {
     margin-bottom: 0 !important;
 }
+
+.editBtn{
+    list-style: none;
+}
+
+.ulBtn{
+    margin: 0;
+    padding: 0;
+}
+
+li.editBtn button{
+    margin-right: 5px;
+}
