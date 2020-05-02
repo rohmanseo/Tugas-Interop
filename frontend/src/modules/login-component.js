@@ -25,22 +25,20 @@ class LandingComponent extends Component {
       email : "",
       password : "",
     }
-
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
-
   }
 
   login = (e) => {
-    axios.post('http://127.0.0.1:8000/api/auth/login', {
+    let url = `http://127.0.0.1:8000/api/auth/login`
+    axios.post(url, {
       email: this.state.email,
       password: this.state.password
-      
     })
     .then(function (response) {
-      console.log(response.data['access_token'])
-      cookies.set('access_token', response.data['access_token'], { path: '/' });
-
+      const token = response.data['access_token'];
+      console.log(token)
+      cookies.set('access_token', token, { path: '/' });
     })
     .catch(function (error) {
       console.log(error)
@@ -51,11 +49,9 @@ class LandingComponent extends Component {
 
   handleEmailChange(e){
     this.setState({email: e.target.value});
-    console.log(this.state.email)
  }
   handlePasswordChange(e){
   this.setState({password: e.target.value});
-  console.log(this.state.password)
 }
 
   render() {

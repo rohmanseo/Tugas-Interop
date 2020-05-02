@@ -15,6 +15,7 @@ class RegisterComponent extends Component {
       name: "",
       email: "",
       password: "",
+      isLoggedIn: false
     };
 
     this.handleNameChange = (event) => {
@@ -27,8 +28,7 @@ class RegisterComponent extends Component {
 
     this.handlePasswordChange = (event) => {
       this.setState(
-        { password: event.target.value },
-        console.log(this.state.password)
+        { password: event.target.value }
       );
     };
   }
@@ -43,7 +43,9 @@ class RegisterComponent extends Component {
         email: this.state.email,
         password: this.state.password,
       })
-      .then();
+      .then(res=>{
+        console.log("Berhasil Registrasi")
+      });
   };
   render() {
     return (
