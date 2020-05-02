@@ -49,6 +49,7 @@ class LandingComponent extends Component {
     });
     e.preventDefault()
   
+    this.props.history.push('/dashboard');
   }
 
   handleEmailChange(e){

@@ -1,5 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
+import Cookies from 'universal-cookie';
+import { useHistory } from "react-router-dom";
+import AuthService from "./auth/auth-service";;
+const cookies = new Cookies();
 const axios = require("axios");
 
 const api = axios.create({
@@ -36,16 +40,28 @@ class RegisterComponent extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    let url = `http://127.0.0.1:8000/api/auth/register`;
+    let url = `https://notes-management.herokuapp.com/api/auth/register`;
+    // AuthService.register(this.state.name,this.state.email, this.state.password).then(
+    //   response => this.setState({
+    //     message : response.data.message,
+    //     successful :true
+    //   })
+    // )
     axios
       .post(url, {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,
       })
-      .then(res=>{
-        console.log("Berhasil Registrasi")
+      .then(function (response) {
+        const token = response.data;
+        console.log(token)
+        cookies.set('access_token', token, { path: '/register' });
+      })
+      .catch(function (error) {
+        console.log(error)
       });
+      this.props.history.push('/dashboard');
   };
   render() {
     return (
