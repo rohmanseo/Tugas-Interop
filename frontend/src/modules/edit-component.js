@@ -10,10 +10,18 @@ const editPage = (props) => {
         <td>
           <ul className="ulBtn">
             <li className="editBtn">
-              <button class="btn btn-warning" type="submit" onClick={()=>props.edit}>
+              <button
+                class="btn btn-warning"
+                type="submit"
+                onClick={() => props.edit}
+              >
                 Edit
               </button>
-              <button class="btn btn-danger" type="submit" onClick={()=> remove(props.notes.id)}>
+              <button
+                class="btn btn-danger"
+                type="submit"
+                onClick={() => props.remove(props.notes.id)}
+              >
                 Delete
               </button>
             </li>
