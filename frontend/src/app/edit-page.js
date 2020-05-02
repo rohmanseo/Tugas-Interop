@@ -1,7 +1,34 @@
 import React, { Component, Fragment } from "react";
 import "../assets/css/style.css";
+import axios from 'axios'
+
+import Notes from "../../src/modules/edit-component"
 
 class EditComponent extends Component {
+  state = {
+    notes: [],
+  };
+
+  getAPI =()=>{
+    axios.get("http://127.0.0.1:8000/api/note").then((res) => {
+      this.setState({
+        notes: res.data.articles,
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.getAPI();
+  }
+
+  handleEdit = () => {};
+
+  handleDelete = (data) => {
+    axios.delete(`http://127.0.0.1:8000/api/note/${data}`).then((res)=>{
+      this.getAPI();
+    })
+  };
+
   render() {
     return (
       <Fragment>
@@ -35,22 +62,9 @@ class EditComponent extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>
-                      <ul className="ulBtn">
-                        <li className="editBtn">
-                          <button class="btn btn-warning" type="submit">
-                            Edit
-                          </button>
-                          <button class="btn btn-danger" type="submit">
-                            Delete
-                          </button>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
+                  {this.state.notes.map((notes) => {
+                    return <Notes data={notes} remove={this.handleDelete} />;
+                  })}
                 </tbody>
               </table>
             </div>
