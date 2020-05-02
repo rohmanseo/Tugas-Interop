@@ -1,21 +1,11 @@
 import React, { Component, Fragment } from "react";
 import {Link, Redirect} from 'react-router-dom'
 import Cookies from 'universal-cookie';
+
+
 const cookies = new Cookies();
 const axios = require('axios');
 console.log(cookies.get('access_token'));
-
-// axios.post('http://192.168.0.3/api/auth/login', {
-//   email: "u50@mail.com",
-//   password: "masukaja"
-// })
-// .then(function (response) {
-//   console.log(response)
-//   cookies.set('access_token', response, { path: '/' });
-// })
-// .catch(function (error) {
-//   console.log(error)
-// });
 
 class LandingComponent extends Component {
   constructor(props){
@@ -28,41 +18,44 @@ class LandingComponent extends Component {
 
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
-
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
-  handleLogin =()=>{
-    this.login();
-  }
-
-  login = (e) => {
+  handleLogin(e){
+    e.preventDefault()
+    var that = this;
+    
     axios.post('http://127.0.0.1:8000/api/auth/login', {
       email: this.state.email,
-      password: this.state.password
-      
+      password: this.state.password   
     })
-    .then(function (response) {
+    .then(function(response){
+      
       console.log(response.data['access_token'])
-      cookies.set('access_token', response.data['access_token'], { path: '/' });
-
+      cookies.set('access_token', response.data['access_token'], { path: '/' });   
+      that.props.history.push('/dashboard')
+      
     })
     .catch(function (error) {
       console.log(error)
     });
-    e.preventDefault()
-  
   }
 
   handleEmailChange(e){
     this.setState({email: e.target.value});
-    console.log(this.state.email)
+    
  }
   handlePasswordChange(e){
   this.setState({password: e.target.value});
-  console.log(this.state.password)
+  
 }
 
   render() {
+    if(cookies.get('access_token') != null){
+      return(
+      <Redirect to="/dashboard" />
+      );
+    }
     return (
       <html>
       <body class="bg-gradient-primary">
