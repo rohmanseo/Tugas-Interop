@@ -63,7 +63,7 @@ class EditComponent extends Component {
                 </thead>
                 <tbody>
                   {this.state.notes.map((notes) => {
-                    return <Notes data={notes} remove={this.handleDelete} />;
+                    return <Notes data={notes} delete={this.handleDelete} />;
                   })}
                 </tbody>
               </table>
