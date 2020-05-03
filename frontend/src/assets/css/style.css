@@ -14,3 +14,7 @@
 li.editBtn button{
     margin-right: 5px;
 }
+
+td{
+    max-width: 17px !important;
+}

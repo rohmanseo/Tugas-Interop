@@ -1,7 +1,7 @@
-import React, {Component,Fragment} from 'react'
-import '../assets/css/sb-admin-2.min.css'
-import '../assets/css/style.css'
-import axios from 'axios'
+import React, { Component, Fragment } from "react";
+import "../assets/css/sb-admin-2.min.css";
+import "../assets/css/style.css";
+import axios from "axios";
 // import component
 import Notes from "../../src/modules/notes-component";
 
@@ -10,16 +10,23 @@ class NotesPage extends Component {
     notes: [],
   };
 
-  componentDidMount() {
-    axios
-      .get(
-        "http://127.0.0.1:8000/api/note"
-      )
-      .then((res) => {
-        this.setState({
-          notes: res.data.articles,
-        });
-      });
+  componentDidMount(token) {
+    let config = {
+      headers: {
+        Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4ODQ4Njg1NiwiZXhwIjoxNTg4NDkwNDU2LCJuYmYiOjE1ODg0ODY4NTYsImp0aSI6IkpxaVk3UUs5NVc3M1BvU20iLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2tc51U0stCjh2fulFUF8xxRca-Muvg0OD4QELI5mgfU",
+      },
+    };
+
+    axios.get("http://127.0.0.1:8000/api/note", config).then((res) => {
+      this.setState(
+        {
+          notes: res.data.data,
+        },
+        () => {
+          console.log(this.state.notes);
+        }
+      );
+    });
   }
 
   render() {
@@ -40,7 +47,7 @@ class NotesPage extends Component {
 
         <div className="row">
           {this.state.notes.map((notes) => {
-            return <Notes title={notes.author} body={notes.description} />;
+            return <Notes data={notes} />;
           })}
         </div>
       </Fragment>

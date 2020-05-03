@@ -5,22 +5,22 @@ const editPage = (props) => {
   return (
     <Fragment>
       <tr>
-        <td>{props.notes.title}</td>
-        <td>{props.notes.body}</td>
+        <td>{props.data.title}</td>
+        <td className="notesTable">{props.data.note}</td>
         <td>
           <ul className="ulBtn">
             <li className="editBtn">
               <button
                 class="btn btn-warning"
                 type="submit"
-                onClick={() => props.edit}
+                onClick={() => props.update(props.data)}
               >
                 Edit
               </button>
               <button
                 class="btn btn-danger"
                 type="submit"
-                onClick={() => props.remove(props.notes.id)}
+                onClick={() => props.remove(props.data.id)}
               >
                 Delete
               </button>

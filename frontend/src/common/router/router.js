@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import Sidebar from "../layout/sidebar";
 import Topbar from "../layout/top-navbar";
 import Notes from "../../app/notes-page";
+import UpdateNotes from "../../app/update-page";
 import EditNotes from "../../app/edit-page";
 import CreateNotes from "../../modules/create-component";
 import LandingComponent from "../../modules/login-component";
@@ -41,6 +42,7 @@ class DashboardComponent extends Component {
                     <Route exact path="/dashboard" component={Notes} />
                     <Route path="/dashboard/create/" component={CreateNotes} />
                     <Route path="/dashboard/edit/" component={EditNotes} />
+                    <Route path="/dashboard/update/" component={UpdateNotes} />
                   </Switch>
                 </div>
 
