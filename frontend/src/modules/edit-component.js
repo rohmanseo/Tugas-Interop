@@ -13,7 +13,7 @@ const editPage = (props) => {
               <button
                 class="btn btn-warning"
                 type="submit"
-                onClick={() => props.edit}
+                onClick={() => props.update(props.notes)}
               >
                 Edit
               </button>

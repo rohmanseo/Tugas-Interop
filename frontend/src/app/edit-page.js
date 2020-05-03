@@ -1,32 +1,38 @@
 import React, { Component, Fragment } from "react";
 import "../assets/css/style.css";
-import axios from 'axios'
+import axios from "axios";
 
-import Notes from "../../src/modules/edit-component"
+import Notes from "../../src/modules/edit-component";
 
 class EditComponent extends Component {
   state = {
     notes: [],
   };
 
-  getAPI =()=>{
-    axios.get("http://127.0.0.1:8000/api/note").then((res) => {
-      this.setState({
-        notes: res.data.articles,
+  getAPI = (token) => {
+    axios
+      .get("http://127.0.0.1:8000/api/note", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        this.setState({
+          notes: res.data,
+        });
       });
-    });
-  }
+  };
 
   componentDidMount() {
     this.getAPI();
   }
 
-  handleEdit = () => {};
+  handleEdit = (data) => {};
 
   handleDelete = (data) => {
-    axios.delete(`http://127.0.0.1:8000/api/note/${data}`).then((res)=>{
+    axios.delete(`http://127.0.0.1:8000/api/note/${data}`).then((res) => {
       this.getAPI();
-    })
+    });
   };
 
   render() {
@@ -63,7 +69,13 @@ class EditComponent extends Component {
                 </thead>
                 <tbody>
                   {this.state.notes.map((notes) => {
-                    return <Notes data={notes} remove={this.handleDelete} />;
+                    return (
+                      <Notes
+                        data={notes}
+                        remove={this.handleDelete}
+                        update={this.handleEdit}
+                      />
+                    );
                   })}
                 </tbody>
               </table>
