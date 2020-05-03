@@ -1,11 +1,7 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
-
-import Cookies from "universal-cookie";
+import Cookies from 'universal-cookie';
 const cookies = new Cookies();
-
-let token = cookies.get("access_token");
-console.log("token create: ", token);
 
 class CreateComponent extends Component {
   state = {
@@ -35,21 +31,20 @@ class CreateComponent extends Component {
 
   saveNotes = (event) => {
     event.preventDefault();
-
+    var token = cookies.get('access_token');
     let config = {
       headers: {
-        Authorization: "Bearer " + token,
-      },
+        'Authorization': `Bearer ${token}`
+      }
     };
 
+    var data = {
+      title: this.state.notesData.title,
+      note: this.state.notesData.note
+    };
+  console.log(data)
     axios
-      .post(
-        "http://127.0.0.1:8000/api/note",
-        {
-          Authorization: "Bearer " + token,
-        },
-        this.state.notesData
-      )
+      .post("http://127.0.0.1:8000/api/note", data,config)
       .then(
         (res) => {
           console.log(res);
