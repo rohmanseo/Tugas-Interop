@@ -6,13 +6,32 @@ const cookies = new Cookies();
 
 let token = cookies.get("access_token");
 console.log("token create: ", token);
+let userId = "";
+
+let config = {
+  headers: {
+    Authorization: "Bearer " + token,
+  },
+};
+
+axios
+  .post("http://127.0.0.1:8000/api/auth/me", {
+    Authorization: "Bearer " + token,
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+console.log("test");
 
 class CreateComponent extends Component {
   state = {
     notes: [],
     notesData: {
       id: "",
-      userId: 1,
+      userId: "",
       title: "",
       note: "",
     },

@@ -3,7 +3,7 @@ import {Link, Redirect} from 'react-router-dom'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const axios = require('axios');
-console.log(cookies.get('access_token'));
+console.log("token login : " ,cookies.get('access_token'));
 
 // axios.post('http://192.168.0.3/api/auth/login', {
 //   email: "u50@mail.com",
