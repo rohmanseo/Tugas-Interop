@@ -15,7 +15,6 @@ class LandingComponent extends Component {
       email : "",
       password : "",
     }
-
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
@@ -23,9 +22,10 @@ class LandingComponent extends Component {
 
   handleLogin(e){
     e.preventDefault()
-    var that = this;
+    let that = this;
+    let url = 'https://notes-management.herokuapp.com/api/auth/login';
     
-    axios.post('http://127.0.0.1:8000/api/auth/login', {
+    axios.post(url, {
       email: this.state.email,
       password: this.state.password   
     })

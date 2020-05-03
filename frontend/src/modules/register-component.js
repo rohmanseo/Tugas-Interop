@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
+import Cookies from 'universal-cookie';
+import { useHistory } from "react-router-dom";
+import AuthService from "./auth/auth-service";;
+const cookies = new Cookies();
 const axios = require("axios");
-
-const api = axios.create({
-  baseURl: `http://127.0.0.1:8000/api/auth/register`,
-  responseType: `json`,
-});
 
 class RegisterComponent extends Component {
   constructor() {
@@ -21,31 +20,47 @@ class RegisterComponent extends Component {
       this.setState({ name: event.target.value });
     };
 
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.handleEmailChange = (event) => {
       this.setState({ email: event.target.value });
     };
 
     this.handlePasswordChange = (event) => {
       this.setState(
-        { password: event.target.value },
-        console.log(this.state.password)
+        { password: event.target.value }
       );
     };
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
+    let that = this;
+    let url = 'https://notes-management.herokuapp.com/api/auth/register';
 
-    let url = `http://127.0.0.1:8000/api/auth/register`;
     axios
       .post(url, {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,
       })
-      .then();
+      .then(function (response) {
+        const token = response.data['access_token'];
+        console.log(token)
+        cookies.set('access_token', token, { path: '/' });
+        that.props.history.push('/dashboard')
+      })
+      .catch(function (error) {
+        console.log(error)
+      });
+
   };
   render() {
+    if(cookies.get('access_token') != null){
+      return(
+      <Redirect to="/dashboard" />
+      );
+    }
     return (
       <body class="bg-gradient-primary">
         <div class="container">
