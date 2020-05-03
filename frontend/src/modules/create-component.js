@@ -1,6 +1,12 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
+let token = cookies.get("access_token");
+console.log("token create: ", token);
+
 class CreateComponent extends Component {
   state = {
     notes: [],
@@ -27,17 +33,23 @@ class CreateComponent extends Component {
     this.saveNotes(event);
   };
 
-  saveNotes = (event,token) => {
+  saveNotes = (event) => {
     event.preventDefault();
 
     let config = {
       headers: {
-        Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4ODQ4Njg1NiwiZXhwIjoxNTg4NDkwNDU2LCJuYmYiOjE1ODg0ODY4NTYsImp0aSI6IkpxaVk3UUs5NVc3M1BvU20iLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2tc51U0stCjh2fulFUF8xxRca-Muvg0OD4QELI5mgfU",
+        Authorization: "Bearer " + token,
       },
     };
 
     axios
-      .post("http://127.0.0.1:8000/api/note", config, this.state.notesData)
+      .post(
+        "http://127.0.0.1:8000/api/note",
+        {
+          Authorization: "Bearer " + token,
+        },
+        this.state.notesData
+      )
       .then(
         (res) => {
           console.log(res);

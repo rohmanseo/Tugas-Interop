@@ -57,7 +57,7 @@ class RegisterComponent extends Component {
         const token = response.data;
         console.log(token)
         cookies.set('access_token', token, { path: '/register' });
-        const logtoken = cookies.get('access_token', token, { path: '/register' });
+        const logtoken = cookies.get('access_token', token, { path: '/' });
         console.log(logtoken)
       })
       .catch(function (error) {
