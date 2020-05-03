@@ -33,6 +33,6 @@ Route::group([
 
 ], function ($router) {
 
-    Route::resource('note', 'API\NoteController');
+    Route::resource('note', 'API\NoteController',['except' => ['edit','create']]);
 
 });
