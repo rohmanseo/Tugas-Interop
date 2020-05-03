@@ -1,24 +1,12 @@
 import React, { Component, Fragment } from "react";
 import {Link, Redirect} from 'react-router-dom'
 import Cookies from 'universal-cookie';
+
+
 const cookies = new Cookies();
 const axios = require('axios');
 console.log("token login : " ,cookies.get('access_token'));
 
-// axios.post('http://192.168.0.3/api/auth/login', {
-//   email: "u50@mail.com",
-//   password: "masukaja"
-// })
-// .then(function (response) {
-//   console.log(response)
-  // cookies.set('access_token', response, { path: '/' });
-// })
-// .catch(function (error) {
-//   console.log(error)
-// });
-
-let token = cookies.get('access_token')
-// console.log("token: ", token)
 class LandingComponent extends Component {
   constructor(props){
     super(props)
@@ -26,44 +14,48 @@ class LandingComponent extends Component {
     this.state = {
       email : "",
       password : "",
-      isLoggedIn: false
     }
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
-
-  handleLogin =(e)=>{
-    this.login(e);
-  }
-
-  login = (e) => {
+  handleLogin(e){
     e.preventDefault()
-    let url = `http://127.0.0.1:8000/api/auth/login`
+    let that = this;
+    let url = 'http://127.0.0.1:8000/api/auth/login/';
+    
     axios.post(url, {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password   
     })
-    .then(function (response) {
-      const token = response.data['access_token'];
-      // console.log(token)
-      cookies.set('access_token', token, { path: '/' });
+    .then(function(response){
+      
+      console.log(response.data['access_token'])
+      cookies.set('access_token', response.data['access_token'], { path: '/' });   
+      that.props.history.push('/dashboard')
+      
     })
     .catch(function (error) {
       console.log(error)
     });
-    this.setState({isLoggedIn:true})
   }
 
   handleEmailChange(e){
     this.setState({email: e.target.value});
+    
  }
   handlePasswordChange(e){
   this.setState({password: e.target.value});
+  
 }
 
   render() {
-    const { isLoggedIn } = this.state
+    if(cookies.get('access_token') != null){
+      return(
+      <Redirect to="/dashboard" />
+      );
+    }
     return (
       <html>
       <body class="bg-gradient-primary">
@@ -118,9 +110,6 @@ class LandingComponent extends Component {
                           </div>
                       
                       <button type="submit" class="btn btn-primary btn-user btn-block" onClick={this.handleLogin}>login</button>
-                      {
-                        isLoggedIn && (<Redirect to={'/dashboard'}/>)
-                      }
                           <hr />
                           <a
                             href="index.html"
