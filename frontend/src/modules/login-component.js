@@ -23,7 +23,7 @@ class LandingComponent extends Component {
   handleLogin(e){
     e.preventDefault()
     let that = this;
-    let url = 'https://notes-management.herokuapp.com/api/auth/login';
+    let url = 'http://127.0.0.1:8000/api/auth/login/';
     
     axios.post(url, {
       email: this.state.email,
