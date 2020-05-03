@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch,Redirect } from "react-router-dom";
+import Cookies from 'universal-cookie';
+
+
 
 // component
 import Sidebar from "../layout/sidebar";
@@ -10,6 +13,7 @@ import EditNotes from "../../app/edit-page";
 import CreateNotes from "../../modules/create-component";
 import LandingComponent from "../../modules/login-component";
 import RegisterComponent from "../../modules/register-component";
+const cookies = new Cookies();
 
 class App extends Component {
   render() {
@@ -27,6 +31,11 @@ class App extends Component {
 
 class DashboardComponent extends Component {
   render() {
+    if(cookies.get('access_token') == null){
+      return(
+      <Redirect to="/" />
+      );
+    }
     return (
       <Fragment>
         <body id="page-top">
@@ -35,7 +44,7 @@ class DashboardComponent extends Component {
 
             <div id="content-wrapper" class="d-flex flex-column">
               <div id="content">
-                <Topbar />
+                <Topbar {...this.props}/>
 
                 <div class="container-fluid">
                   <Switch>
