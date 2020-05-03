@@ -17,11 +17,9 @@ class CreateComponent extends Component {
     formNewNotes["id"] = new Date().getTime();
     formNewNotes[event.target.name] = event.target.value;
     {
-      this.setState(
-        {
-          notesData: formNewNotes,
-        }
-      );
+      this.setState({
+        notesData: formNewNotes,
+      });
     }
   };
 
@@ -29,25 +27,25 @@ class CreateComponent extends Component {
     this.saveNotes(event);
   };
 
-  saveNotes = (event) => {
+  saveNotes = (event,token) => {
     event.preventDefault();
 
     let config = {
       headers: {
-        Authorization:
-          "Bearer " +
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4ODQ0MTg0OSwiZXhwIjoxNTg4NDQ1NDQ5LCJuYmYiOjE1ODg0NDE4NDksImp0aSI6ImhicjFHWUoxQUhOMWptMnkiLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2pcDninmy0pWLu8nvuB8TOdteKRs7757QnW0C9jTKhg",
-      }
+        Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4ODQ4Njg1NiwiZXhwIjoxNTg4NDkwNDU2LCJuYmYiOjE1ODg0ODY4NTYsImp0aSI6IkpxaVk3UUs5NVc3M1BvU20iLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2tc51U0stCjh2fulFUF8xxRca-Muvg0OD4QELI5mgfU",
+      },
     };
 
-    axios.post("http://127.0.0.1:8000/api/note", config,this.state.notesData).then(res=>{
-      console.log(res)
-    }, er => {
-      console.log("err : ", er.response)
-    })
-
-    console.log(this.state.notesData)
-    
+    axios
+      .post("http://127.0.0.1:8000/api/note", config, this.state.notesData)
+      .then(
+        (res) => {
+          console.log(res);
+        },
+        (er) => {
+          console.log("err : ", er.response);
+        }
+      );
   };
 
   render() {
