@@ -49,7 +49,7 @@ class LandingComponent extends Component {
       console.log(error)
     });
     this.setState({isLoggedIn:true})
-    // e.preventDefault()
+    e.preventDefault()
   }
 
   handleEmailChange(e){
