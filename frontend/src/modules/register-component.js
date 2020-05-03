@@ -40,7 +40,7 @@ class RegisterComponent extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    let url = `https://notes-management.herokuapp.com/api/auth/register`;
+    let url = `http://localhost:8000/api/auth/register`;
     // AuthService.register(this.state.name,this.state.email, this.state.password).then(
     //   response => this.setState({
     //     message : response.data.message,
@@ -57,13 +57,17 @@ class RegisterComponent extends Component {
         const token = response.data;
         console.log(token)
         cookies.set('access_token', token, { path: '/register' });
+        const logtoken = cookies.get('access_token', token, { path: '/register' });
+        console.log(logtoken)
       })
       .catch(function (error) {
         console.log(error)
       });
-      this.props.history.push('/dashboard');
+      this.setState({ isLoggedIn:true })
   };
-  render() {
+  render() 
+  { const { isLoggedIn } = this.state
+
     return (
       <body class="bg-gradient-primary">
         <div class="container">
@@ -126,7 +130,10 @@ class RegisterComponent extends Component {
                       >
                         Register Account
                       </button>
-                      <hr />
+                      <hr />{isLoggedIn &&(
+                          <Redirect to={'/dashboard'}/>)
+                      }
+                      
                       <a
                         href="index.html"
                         class="btn btn-google btn-user btn-block"

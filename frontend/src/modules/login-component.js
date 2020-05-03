@@ -48,8 +48,6 @@ class LandingComponent extends Component {
       console.log(error)
     });
     e.preventDefault()
-  
-    this.props.history.push('/dashboard');
   }
 
   handleEmailChange(e){
