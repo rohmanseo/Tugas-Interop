@@ -6,6 +6,11 @@ import AuthService from "./auth/auth-service";;
 const cookies = new Cookies();
 const axios = require("axios");
 
+const api = axios.create({
+  baseURl: `http://127.0.0.1:8000/api/auth/register`,
+  responseType: `json`,
+});
+
 class RegisterComponent extends Component {
   constructor() {
     super();
@@ -14,13 +19,12 @@ class RegisterComponent extends Component {
       name: "",
       email: "",
       password: "",
+      isLoggedIn: false
     };
 
     this.handleNameChange = (event) => {
       this.setState({ name: event.target.value });
     };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.handleEmailChange = (event) => {
       this.setState({ email: event.target.value });
@@ -35,9 +39,14 @@ class RegisterComponent extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    let that = this;
-    let url = 'https://notes-management.herokuapp.com/api/auth/register';
 
+    let url = `http://localhost:8000/api/auth/register`;
+    // AuthService.register(this.state.name,this.state.email, this.state.password).then(
+    //   response => this.setState({
+    //     message : response.data.message,
+    //     successful :true
+    //   })
+    // )
     axios
       .post(url, {
         name: this.state.name,
@@ -45,22 +54,20 @@ class RegisterComponent extends Component {
         password: this.state.password,
       })
       .then(function (response) {
-        const token = response.data['access_token'];
+        const token = response.data;
         console.log(token)
-        cookies.set('access_token', token, { path: '/' });
-        that.props.history.push('/dashboard')
+        cookies.set('access_token', token, { path: '/register' });
+        const logtoken = cookies.get('access_token', token, { path: '/' });
+        console.log(logtoken)
       })
       .catch(function (error) {
         console.log(error)
       });
-
+      this.setState({ isLoggedIn:true })
   };
-  render() {
-    if(cookies.get('access_token') != null){
-      return(
-      <Redirect to="/dashboard" />
-      );
-    }
+  render() 
+  { const { isLoggedIn } = this.state
+
     return (
       <body class="bg-gradient-primary">
         <div class="container">
@@ -123,7 +130,10 @@ class RegisterComponent extends Component {
                       >
                         Register Account
                       </button>
-                      <hr />
+                      <hr />{isLoggedIn &&(
+                          <Redirect to={'/dashboard'}/>)
+                      }
+                      
                       <a
                         href="index.html"
                         class="btn btn-google btn-user btn-block"
