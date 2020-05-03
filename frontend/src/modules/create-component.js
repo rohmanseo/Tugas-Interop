@@ -1,6 +1,12 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
+let token = cookies.get("access_token");
+console.log("token create: ", token);
+
 class CreateComponent extends Component {
   state = {
     notes: [],
@@ -17,11 +23,9 @@ class CreateComponent extends Component {
     formNewNotes["id"] = new Date().getTime();
     formNewNotes[event.target.name] = event.target.value;
     {
-      this.setState(
-        {
-          notesData: formNewNotes,
-        }
-      );
+      this.setState({
+        notesData: formNewNotes,
+      });
     }
   };
 
@@ -34,20 +38,26 @@ class CreateComponent extends Component {
 
     let config = {
       headers: {
-        Authorization:
-          "Bearer " +
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4ODQ0MTg0OSwiZXhwIjoxNTg4NDQ1NDQ5LCJuYmYiOjE1ODg0NDE4NDksImp0aSI6ImhicjFHWUoxQUhOMWptMnkiLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2pcDninmy0pWLu8nvuB8TOdteKRs7757QnW0C9jTKhg",
-      }
+        Authorization: "Bearer " + token,
+      },
     };
 
-    axios.post("http://127.0.0.1:8000/api/note", config,this.state.notesData).then(res=>{
-      console.log(res)
-    }, er => {
-      console.log("err : ", er.response)
-    })
-
-    console.log(this.state.notesData)
-    
+    axios
+      .post(
+        "http://127.0.0.1:8000/api/note",
+        {
+          Authorization: "Bearer " + token,
+        },
+        this.state.notesData
+      )
+      .then(
+        (res) => {
+          console.log(res);
+        },
+        (er) => {
+          console.log("err : ", er.response);
+        }
+      );
   };
 
   render() {

@@ -9,8 +9,25 @@ import {
 } from "react-bootstrap";
 import LoginComponent from "../../modules/login-component"
 import './top-navbar.css';
+import Cookies from 'universal-cookie';
+import {Route,Link, Redirect,withRouter} from 'react-router-dom'
+
+
+const cookies = new Cookies();
 
 class TopBar extends Component {
+
+  constructor(props){
+    super(props)
+    
+    this.handleLogout = this.handleLogout.bind(this)
+  }
+
+  handleLogout(e){
+    this.props.history.push('/')
+    cookies.remove('access_token',{ path: '/' })
+  }
+
   render() {
     return (
       <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -78,6 +95,7 @@ class TopBar extends Component {
 
           <li class="nav-item dropdown no-arrow">
           </li>
+          <li><button type="button" onClick={this.handleLogout} class="btn btn-outline-primary">Logout</button></li>
         </ul>
       </nav>
     );

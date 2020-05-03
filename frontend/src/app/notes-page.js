@@ -4,13 +4,17 @@ import "../assets/css/style.css";
 import axios from "axios";
 // import component
 import Notes from "../../src/modules/notes-component";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
+let token = cookies.get("access_token");
+console.log("token note: ", token);
 class NotesPage extends Component {
   state = {
     notes: [],
   };
 
-  componentDidMount(token) {
+  componentDidMount() {
     let config = {
       headers: {
         Authorization: "Bearer " + token,
