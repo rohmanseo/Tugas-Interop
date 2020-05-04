@@ -36,7 +36,7 @@ class RegisterComponent extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     let that = this;
-    let url = 'https://notes-management.herokuapp.com/api/auth/register';
+    let url = 'http://127.0.0.1:8000/api/auth/register';
 
     axios
       .post(url, {

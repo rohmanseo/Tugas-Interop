@@ -5,29 +5,26 @@ const cookies = new Cookies();
 
 class CreateComponent extends Component {
   state = {
-    notes: [],
-    notesData: {
-      id: "",
-      userId: 1,
-      title: "",
-      note: "",
-    },
+    noteTitle: '',
+    noteBody: ''
   };
 
-  handleFormChange = (event) => {
-    let formNewNotes = { ...this.state.notesData };
-    formNewNotes["id"] = new Date().getTime();
-    formNewNotes[event.target.name] = event.target.value;
-    {
-      this.setState({
-        notesData: formNewNotes,
-      });
-    }
-  };
+  handleTitleChange = (event) => {
+    this.setState({
+      noteTitle: event.target.value
+    })
+  }
+
+  handleBodyChange = (event) => {
+    console.log(event.target.value)
+    this.setState({
+      noteBody: event.target.value
+    })
+  }
 
   handleCreate = (event) => {
     this.saveNotes(event);
-  };
+  }
 
   saveNotes = (event) => {
     event.preventDefault();
@@ -39,15 +36,22 @@ class CreateComponent extends Component {
     };
 
     var data = {
-      title: this.state.notesData.title,
-      note: this.state.notesData.note
+      title: this.state.noteTitle,
+      note: this.state.noteBody
     };
+
   console.log(data)
+
     axios
-      .post("https://notes-management.herokuapp.com/api/note", data,config)
+      .post("http://127.0.0.1:8000/api/note", data,config)
       .then(
         (res) => {
           console.log(res);
+          alert('Success')
+          this.setState({
+            noteTitle: '',
+            noteBody: ''
+          })
         },
         (er) => {
           console.log("err : ", er.response);
@@ -76,7 +80,7 @@ class CreateComponent extends Component {
               <h6 class="m-0 font-weight-bold text-primary">New Note</h6>
             </div>
             <div className="card-body">
-              <form class="m-2 col-lg-12">
+              <form class="m-2 col-lg-12" onSubmit={this.handleCreate}>
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Notes Title</label>
                   <input
@@ -84,7 +88,8 @@ class CreateComponent extends Component {
                     name="title"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    onChange={this.handleFormChange}
+                    value={this.state.noteTitle}
+                    onChange={this.handleTitleChange}
                   />
                 </div>
                 <div class="form-group">
@@ -94,13 +99,12 @@ class CreateComponent extends Component {
                     name="note"
                     id="exampleFormControlTextarea1"
                     rows="3"
-                    onChange={this.handleFormChange}
+                    onChange={this.handleBodyChange}
+                    value = {this.state.noteBody}
                   ></textarea>
                 </div>
                 <button
                   class="btn btn-primary float-right"
-                  onClick={this.handleCreate}
-                  type="submit"
                 >
                   Submit
                 </button>

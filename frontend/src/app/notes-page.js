@@ -20,7 +20,7 @@ class NotesPage extends Component {
 
     var token = cookies.get('access_token');
 
-    axios.get("https://notes-management.herokuapp.com/api/note", 
+    axios.get("http://127.0.0.1:8000/api/note", 
     {headers: {"Authorization" : `Bearer ${token}`}}).then(
       (res) => {
         console.log(res.data.data);
