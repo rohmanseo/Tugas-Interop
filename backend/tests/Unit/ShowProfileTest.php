@@ -7,18 +7,22 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 use App\User;
 
-class ShowNoteTest extends TestCase
+class ShowProfileTest extends TestCase
 {
-   
+
     public function testExample()
     {
         $user = CreateUser::getUser();        
         $response = $this->actingAs($user)
-                    ->getJson(route('note.index'))
+                    ->postJson(route('profile'))
                     ->assertStatus(200)
                     ->assertJsonStructure([
-                        'status',
-                        'data',
-                    ]);
+                        'id',
+                        'name',
+                        'email',
+                        'email_verified_at',
+                        'created_at',
+                        'updated_at',
+                    ])->getContent();
     }
 }

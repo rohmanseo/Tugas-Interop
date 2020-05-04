@@ -16,13 +16,13 @@ class CreateNoteTest extends TestCase
      */
     public function testExample()
     {
-        $user = factory(User::class)->create();
+        $user = CreateUser::getUser();
         $data = [
                 'title' => 'Hello world',
                 'note' => 'this is note example'
         ];
         $response = $this->actingAs($user)
-                    ->json('POST', route('note.store'),$data)
+                    ->postJson(route('note.store'),$data)
                     ->assertStatus(200)
                     ->assertJsonStructure([
                         'status',
