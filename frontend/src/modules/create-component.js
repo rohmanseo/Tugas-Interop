@@ -44,7 +44,7 @@ class CreateComponent extends Component {
     };
   console.log(data)
     axios
-      .post("http://127.0.0.1:8000/api/note", data,config)
+      .post("https://notes-management.herokuapp.com/api/note", data,config)
       .then(
         (res) => {
           console.log(res);

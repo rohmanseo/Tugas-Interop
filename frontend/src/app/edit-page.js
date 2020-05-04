@@ -4,16 +4,26 @@ import axios from "axios";
 
 import Notes from "../../src/modules/edit-component";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
+
 class EditComponent extends Component {
   state = {
     notes: [],
   };
 
-  getAPI = (token) => {
+  
+  
+  // console.log("token note: ", token);
+
+  getAPI = () => {
+
+    var token = cookies.get('access_token');
     axios
-      .get("http://127.0.0.1:8000/api/note", {
+      .get("https://notes-management.herokuapp.com/api/note", {
         headers: {
-          Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4ODQ4Njg1NiwiZXhwIjoxNTg4NDkwNDU2LCJuYmYiOjE1ODg0ODY4NTYsImp0aSI6IkpxaVk3UUs5NVc3M1BvU20iLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2tc51U0stCjh2fulFUF8xxRca-Muvg0OD4QELI5mgfU",
+          Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
@@ -27,19 +37,47 @@ class EditComponent extends Component {
     this.getAPI();
   }
 
-  handleEdit = (data) => {};
+  handleEdit = (data) => {
 
-  handleDelete = (data,token) => {
+    console.log("onsubmit " + data)
+  //   var token = cookies.get('access_token');
+  //   let config = {
+  //     headers: {
+  //       'Authorization': `Bearer ${token}`
+  //     }
+  //   };
+
+  //   var data = {
+  //     title: data.title,
+  //     note: data.body
+  //   };
+  // console.log(data)
+    // axios
+    //   .put("https://notes-management.herokuapp.com/api/note", data,config)
+    //   .then(
+    //     (res) => {
+    //       console.log(res);
+    //     },
+    //     (er) => {
+    //       console.log("err : ", er.response);
+    //     }
+    //   );
+  };
+
+  handleDelete = (data) => {
+    var token = cookies.get('access_token');
     let config = {
       headers: {
-        Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4ODQ4Njg1NiwiZXhwIjoxNTg4NDkwNDU2LCJuYmYiOjE1ODg0ODY4NTYsImp0aSI6IkpxaVk3UUs5NVc3M1BvU20iLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2tc51U0stCjh2fulFUF8xxRca-Muvg0OD4QELI5mgfU",
+        Authorization: "Bearer " + token,
       },
     };
 
-    axios.delete(`http://127.0.0.1:8000/api/note/${data}`,config).then((res) => {
-      console.log("delete: " , data)
-      this.getAPI();
-    });
+    axios
+      .delete(`https://notes-management.herokuapp.com/api/note/${data}`, config)
+      .then((res) => {
+        console.log("delete: ", data);
+        this.getAPI();
+      });
   };
 
   render() {
