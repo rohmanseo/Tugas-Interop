@@ -34,33 +34,6 @@ class EditComponent extends Component {
     this.getAPI();
   }
 
-  handleEdit = (data) => {
-
-    console.log("onsubmit " + data)
-  //   var token = cookies.get('access_token');
-  //   let config = {
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   };
-
-  //   var data = {
-  //     title: data.title,
-  //     note: data.body
-  //   };
-  // console.log(data)
-    // axios
-    //   .put("https://notes-management.herokuapp.com/api/note", data,config)
-    //   .then(
-    //     (res) => {
-    //       console.log(res);
-    //     },
-    //     (er) => {
-    //       console.log("err : ", er.response);
-    //     }
-    //   );
-  };
-
   handleDelete = (data) => {
     var token = cookies.get('access_token');
     let config = {
@@ -115,7 +88,6 @@ class EditComponent extends Component {
                       <Notes
                         data={notes}
                         remove={this.handleDelete}
-                        update={this.handleEdit}
                       />
                     );
                   })}
