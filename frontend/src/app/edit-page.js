@@ -4,16 +4,23 @@ import axios from "axios";
 
 import Notes from "../../src/modules/edit-component";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
+
 class EditComponent extends Component {
   state = {
     notes: [],
   };
 
-  getAPI = (token) => {
+
+  getAPI = () => {
+
+    var token = cookies.get('access_token');
     axios
       .get("http://127.0.0.1:8000/api/note", {
         headers: {
-          Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4ODQ4Njg1NiwiZXhwIjoxNTg4NDkwNDU2LCJuYmYiOjE1ODg0ODY4NTYsImp0aSI6IkpxaVk3UUs5NVc3M1BvU20iLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2tc51U0stCjh2fulFUF8xxRca-Muvg0OD4QELI5mgfU",
+          Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
@@ -27,19 +34,20 @@ class EditComponent extends Component {
     this.getAPI();
   }
 
-  handleEdit = (data) => {};
-
-  handleDelete = (data,token) => {
+  handleDelete = (data) => {
+    var token = cookies.get('access_token');
     let config = {
       headers: {
-        Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4ODQ4Njg1NiwiZXhwIjoxNTg4NDkwNDU2LCJuYmYiOjE1ODg0ODY4NTYsImp0aSI6IkpxaVk3UUs5NVc3M1BvU20iLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.2tc51U0stCjh2fulFUF8xxRca-Muvg0OD4QELI5mgfU",
+        Authorization: "Bearer " + token,
       },
     };
 
-    axios.delete(`http://127.0.0.1:8000/api/note/${data}`,config).then((res) => {
-      console.log("delete: " , data)
-      this.getAPI();
-    });
+    axios
+      .delete(`http://127.0.0.1:8000/api/note/${data}`, config)
+      .then((res) => {
+        console.log("delete: ", data);
+        this.getAPI();
+      });
   };
 
   render() {
@@ -80,7 +88,6 @@ class EditComponent extends Component {
                       <Notes
                         data={notes}
                         remove={this.handleDelete}
-                        update={this.handleEdit}
                       />
                     );
                   })}
