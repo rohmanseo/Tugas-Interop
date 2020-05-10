@@ -13,15 +13,12 @@ class EditComponent extends Component {
     notes: [],
   };
 
-  
-  
-  // console.log("token note: ", token);
 
   getAPI = () => {
 
     var token = cookies.get('access_token');
     axios
-      .get("https://notes-management.herokuapp.com/api/note", {
+      .get("http://127.0.0.1:8000/api/note", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -37,33 +34,6 @@ class EditComponent extends Component {
     this.getAPI();
   }
 
-  handleEdit = (data) => {
-
-    console.log("onsubmit " + data)
-  //   var token = cookies.get('access_token');
-  //   let config = {
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   };
-
-  //   var data = {
-  //     title: data.title,
-  //     note: data.body
-  //   };
-  // console.log(data)
-    // axios
-    //   .put("https://notes-management.herokuapp.com/api/note", data,config)
-    //   .then(
-    //     (res) => {
-    //       console.log(res);
-    //     },
-    //     (er) => {
-    //       console.log("err : ", er.response);
-    //     }
-    //   );
-  };
-
   handleDelete = (data) => {
     var token = cookies.get('access_token');
     let config = {
@@ -73,7 +43,7 @@ class EditComponent extends Component {
     };
 
     axios
-      .delete(`https://notes-management.herokuapp.com/api/note/${data}`, config)
+      .delete(`http://127.0.0.1:8000/api/note/${data}`, config)
       .then((res) => {
         console.log("delete: ", data);
         this.getAPI();
@@ -118,7 +88,6 @@ class EditComponent extends Component {
                       <Notes
                         data={notes}
                         remove={this.handleDelete}
-                        update={this.handleEdit}
                       />
                     );
                   })}
