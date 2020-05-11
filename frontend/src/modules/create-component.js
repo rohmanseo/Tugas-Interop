@@ -27,6 +27,7 @@ class CreateComponent extends Component {
   }
 
   saveNotes = (event) => {
+
     event.preventDefault();
     var token = cookies.get('access_token');
     let config = {
@@ -47,7 +48,7 @@ class CreateComponent extends Component {
       .then(
         (res) => {
           console.log(res);
-          alert('Success')
+          this.props.history.push('/dashboard')
           this.setState({
             noteTitle: '',
             noteBody: ''

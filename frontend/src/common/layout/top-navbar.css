@@ -1,3 +1,30 @@
 .dropdown {
     width: 301px;
 }
+
+span.material-icons {
+    font-size: 40px !important;
+}
+
+.side{
+    display:none;
+}
+
+@media (min-width: 768px) {
+    .sidebar .nav-item .nav-link span{
+        font-size: 60px !important;
+        padding: 0;
+        width: 0;
+    }
+
+    .side{
+        display: inherit;
+        margin: 0;
+    }
+
+}
+
+
+.sidebar .nav-item .nav-link{
+    text-align: center !important;
+}

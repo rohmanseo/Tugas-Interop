@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Route, Switch,Redirect } from "react-router-dom";
 import Cookies from 'universal-cookie';
-
+import './style.css';
 
 
 // component
@@ -58,7 +58,7 @@ class DashboardComponent extends Component {
                 <footer class="sticky-footer bg-white">
                   <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                      <span>Copyright &copy; Notes Management 2020</span>
+                      <span className="myFooter">Copyright &copy; Notes Management 2020</span>
                     </div>
                   </div>
                 </footer>
