@@ -47,7 +47,7 @@ class MyModalBody extends Component {
   getAPI = () => {
     var token = cookies.get("access_token");
     axios
-      .get("http://127.0.0.1:8000/api/note", {
+      .get("https://notes-management.herokuapp.com/api/note", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -74,7 +74,7 @@ class MyModalBody extends Component {
       note: this.state.noteBody,
     };
 
-    axios.put("http://127.0.0.1:8000/api/note/" + noteId, data, config).then(
+    axios.put("https://notes-management.herokuapp.com/api/note/" + noteId, data, config).then(
       (res) => {
         console.log(res);
         this.props.onHide();

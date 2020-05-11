@@ -36,9 +36,10 @@ class RegisterComponent extends Component {
   }
 
   handleSubmit = (event) => {
+
     event.preventDefault();
     let that = this;
-    let url = 'http://127.0.0.1:8000/api/auth/register';
+    let url = 'https://notes-management.herokuapp.com/api/auth/register';
 
     axios
       .post(url, {
@@ -86,6 +87,7 @@ class RegisterComponent extends Component {
                             name="name"
                             value={this.state.name}
                             onChange={this.handleNameChange}
+                            required="required"
                           />
                         </div>
                       </div>
@@ -97,6 +99,7 @@ class RegisterComponent extends Component {
                           placeholder="Email Address"
                           value={this.state.email}
                           onChange={this.handleEmailChange}
+                          required="required"
                         />
                       </div>
                       <div class="form-group row">
@@ -108,6 +111,7 @@ class RegisterComponent extends Component {
                             placeholder="Password"
                             value={this.state.password}
                             onChange={this.handlePasswordChange}
+                            required="required"
                           />
                         </div>
                         <div class="col-sm-6">
@@ -116,6 +120,7 @@ class RegisterComponent extends Component {
                             class="form-control form-control-user"
                             id="exampleRepeatPassword"
                             placeholder="Repeat Password"
+                            required="required"
                           />
                         </div>
                       </div>

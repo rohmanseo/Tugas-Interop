@@ -21,25 +21,33 @@ class LandingComponent extends Component {
   }
 
   handleLogin(e) {
-    e.preventDefault();
-    let that = this;
-    let url = "http://127.0.0.1:8000/api/auth/login";
 
-    axios
-      .post(url, {
-        email: this.state.email,
-        password: this.state.password,
-      })
-      .then(function (response) {
-        console.log(response.data["access_token"]);
-        cookies.set("access_token", response.data["access_token"], {
-          path: "/",
+    if(this.state.email=="" || this.state.password==""){
+      
+    }
+    else{
+      e.preventDefault();
+      let that = this;
+      let url = "https://notes-management.herokuapp.com/api/auth/login";
+  
+      axios
+        .post(url, {
+          email: this.state.email,
+          password: this.state.password,
+        })
+        .then(function (response) {
+          console.log(response.data["access_token"]);
+          cookies.set("access_token", response.data["access_token"], {
+            path: "/",
+          });
+          that.props.history.push("/dashboard");
+        })
+        .catch(function (error) {
+          console.log(error);
+          alert("please check your email or password")
         });
-        that.props.history.push("/dashboard");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    }
+
   }
 
   handleEmailChange(e) {
@@ -78,6 +86,7 @@ class LandingComponent extends Component {
                                 id="exampleInputEmail"
                                 aria-describedby="emailHelp"
                                 placeholder="Enter Email Address..."
+                                required="required"
                               />
                             </div>
                             <div class="form-group">
@@ -88,6 +97,7 @@ class LandingComponent extends Component {
                                 class="form-control form-control-user"
                                 id="exampleInputPassword"
                                 placeholder="Password"
+                                required="required"
                               />
                             </div>
                             <div class="form-group">

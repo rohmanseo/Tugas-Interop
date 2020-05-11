@@ -18,7 +18,7 @@ class EditComponent extends Component {
 
     var token = cookies.get('access_token');
     axios
-      .get("http://127.0.0.1:8000/api/note", {
+      .get("https://notes-management.herokuapp.com/api/note", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -43,7 +43,7 @@ class EditComponent extends Component {
     };
 
     axios
-      .delete(`http://127.0.0.1:8000/api/note/${data}`, config)
+      .delete(`https://notes-management.herokuapp.com/api/note/${data}`, config)
       .then((res) => {
         console.log("delete: ", data);
         this.getAPI();
