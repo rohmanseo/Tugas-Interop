@@ -12,7 +12,7 @@ class AboutPage extends Component {
           This project was created by Edo Novanto, Yasta Mardika, and Nur Rohman
         </p>
 
-        <div class="d-inline d-flex justify-content-center">
+        <div class="d-inline d-flex justify-content-center github">
           <div
             class="github-card"
             data-github="edonovanto"
@@ -27,7 +27,7 @@ class AboutPage extends Component {
           ></div>
           <div
             class="github-card"
-            data-github="rohman"
+            data-github="rohmanseo"
             data-width="350"
             data-theme="default"
           ></div>
