@@ -12,7 +12,7 @@ span.material-icons {
 
 @media (min-width: 768px) {
     .sidebar .nav-item .nav-link span{
-        font-size: 60px !important;
+        font-size: 55px !important;
         padding: 0;
         width: 0;
     }

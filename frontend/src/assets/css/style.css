@@ -18,3 +18,11 @@ li.editBtn button{
 td{
     max-width: 17px !important;
 }
+
+th{
+    background-color: rgba(41, 79, 195, 0.13);
+}
+
+.card-header {
+    background-color: white !important;
+}

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import Cookies from 'universal-cookie';
+import '../../src/assets/css/style.css'
 const cookies = new Cookies();
 
 class CreateComponent extends Component {
@@ -67,12 +68,7 @@ class CreateComponent extends Component {
           <h1 class="h3 mb-2 mt-3 text-gray-800">Create Notes</h1>
         </div>
         <p class="mb-10">
-          DataTables is a third party plugin that is used to generate the demo
-          table below. For more information about DataTables, please visit the{" "}
-          <a target="_blank" href="https://datatables.net">
-            official DataTables documentation
-          </a>
-          .
+          Create new notes by inserting the title and body on the box below.
         </p>
 
         <div className="row">

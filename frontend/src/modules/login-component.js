@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Cookies from "universal-cookie";
+import "./style2.css";
 
 const cookies = new Cookies();
 const axios = require("axios");
@@ -54,7 +55,7 @@ class LandingComponent extends Component {
     }
     return (
       <html>
-        <body class="bg-gradient-primary">
+        <body class="login">
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-xl-10 col-lg-12 col-md-9">
@@ -65,7 +66,7 @@ class LandingComponent extends Component {
                       <div class="col-lg-6">
                         <div class="p-5">
                           <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                            <h1 class="h4 text-gray-900 message">Welcome to Notes Management!</h1>
                           </div>
                           <form class="user" onSubmit={this.login}>
                             <div class="form-group">
@@ -110,30 +111,10 @@ class LandingComponent extends Component {
                               class="btn btn-primary btn-user btn-block"
                               onClick={this.handleLogin}
                             >
-                              login
+                              Log in
                             </button>
-                            <hr />
-                            <a
-                              href="index.html"
-                              class="btn btn-google btn-user btn-block"
-                            >
-                              <i class="fab fa-google fa-fw"></i> Login with
-                              Google
-                            </a>
-                            <a
-                              href="index.html"
-                              class="btn btn-facebook btn-user btn-block"
-                            >
-                              <i class="fab fa-facebook-f fa-fw"></i> Login with
-                              Facebook
-                            </a>
                           </form>
                           <hr />
-                          <div class="text-center">
-                            <a class="small" href="forgot-password.html">
-                              Forgot Password?
-                            </a>
-                          </div>
                           <div class="text-center">
                             <Link class="nav-link" to="/register">
                               <i class="fas fa-fw fa-tachometer-alt"></i>
