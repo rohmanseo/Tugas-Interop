@@ -20,7 +20,7 @@ class NotesPage extends Component {
 
     var token = cookies.get('access_token');
 
-    axios.get("http://127.0.0.1:8000/api/note", 
+    axios.get("https://notes-management.herokuapp.com/api/note", 
     {headers: {"Authorization" : `Bearer ${token}`}}).then(
       (res) => {
         console.log(res.data.data);
@@ -41,12 +41,7 @@ class NotesPage extends Component {
         </div>
 
         <p class="mb-10">
-          DataTables is a third party plugin that is used to generate the demo
-          table below. For more information about DataTables, please visit the{" "}
-          <a target="_blank" href="https://datatables.net">
-            official DataTables documentation
-          </a>
-          .
+          List of your current notes. The notes are sorted from the old to the newest note
         </p>
 
         <div className="row">

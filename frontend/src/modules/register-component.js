@@ -2,7 +2,9 @@ import React, { Component, Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import { useHistory } from "react-router-dom";
-import AuthService from "./auth/auth-service";;
+import AuthService from "./auth/auth-service";
+import "./style2.css";
+
 const cookies = new Cookies();
 const axios = require("axios");
 
@@ -34,9 +36,10 @@ class RegisterComponent extends Component {
   }
 
   handleSubmit = (event) => {
+
     event.preventDefault();
     let that = this;
-    let url = 'http://127.0.0.1:8000/api/auth/register';
+    let url = 'https://notes-management.herokuapp.com/api/auth/register';
 
     axios
       .post(url, {
@@ -62,8 +65,8 @@ class RegisterComponent extends Component {
       );
     }
     return (
-      <body class="bg-gradient-primary">
-        <div class="container">
+      <body class="register">
+        <div class="container register">
           <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
               <div class="row">
@@ -71,7 +74,7 @@ class RegisterComponent extends Component {
                 <div class="col-lg-7">
                   <div class="p-5">
                     <div class="text-center">
-                      <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                      <h1 class="h4 text-gray-900 message">Create an Account!</h1>
                     </div>
                     <form class="user" onSubmit={this.handleSubmit}>
                       <div class="form-group row">
@@ -84,6 +87,7 @@ class RegisterComponent extends Component {
                             name="name"
                             value={this.state.name}
                             onChange={this.handleNameChange}
+                            required="required"
                           />
                         </div>
                       </div>
@@ -95,6 +99,7 @@ class RegisterComponent extends Component {
                           placeholder="Email Address"
                           value={this.state.email}
                           onChange={this.handleEmailChange}
+                          required="required"
                         />
                       </div>
                       <div class="form-group row">
@@ -106,6 +111,7 @@ class RegisterComponent extends Component {
                             placeholder="Password"
                             value={this.state.password}
                             onChange={this.handlePasswordChange}
+                            required="required"
                           />
                         </div>
                         <div class="col-sm-6">
@@ -114,6 +120,7 @@ class RegisterComponent extends Component {
                             class="form-control form-control-user"
                             id="exampleRepeatPassword"
                             placeholder="Repeat Password"
+                            required="required"
                           />
                         </div>
                       </div>
@@ -123,26 +130,9 @@ class RegisterComponent extends Component {
                       >
                         Register Account
                       </button>
-                      <hr />
-                      <a
-                        href="index.html"
-                        class="btn btn-google btn-user btn-block"
-                      >
-                        <i class="fab fa-google fa-fw"></i> Register with Google
-                      </a>
-                      <a
-                        href="index.html"
-                        class="btn btn-facebook btn-user btn-block"
-                      >
-                        <i class="fab fa-facebook-f fa-fw"></i> Register with
-                        Facebook
-                      </a>
                     </form>
                     <hr />
                     <div class="text-center">
-                      <a class="small" href="forgot-password.html">
-                        Forgot Password?
-                      </a>
                     </div>
                     <div class="text-center">
                       <Link to="/">

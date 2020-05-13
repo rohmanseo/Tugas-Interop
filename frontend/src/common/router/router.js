@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Route, Switch,Redirect } from "react-router-dom";
 import Cookies from 'universal-cookie';
-
+import './style.css';
 
 
 // component
@@ -13,6 +13,7 @@ import EditNotes from "../../app/edit-page";
 import CreateNotes from "../../modules/create-component";
 import LandingComponent from "../../modules/login-component";
 import RegisterComponent from "../../modules/register-component";
+import AboutComponent from "../../modules/about-component";
 const cookies = new Cookies();
 
 class App extends Component {
@@ -52,13 +53,14 @@ class DashboardComponent extends Component {
                     <Route path="/dashboard/create/" component={CreateNotes} />
                     <Route path="/dashboard/edit/" component={EditNotes} />
                     <Route path="/dashboard/update/" component={UpdateNotes} />
+                    <Route path="/dashboard/about/" component={AboutComponent} />
                   </Switch>
                 </div>
 
                 <footer class="sticky-footer bg-white">
                   <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                      <span>Copyright &copy; Notes Management 2020</span>
+                      <span className="myFooter">Copyright &copy; Notes Management 2020</span>
                     </div>
                   </div>
                 </footer>

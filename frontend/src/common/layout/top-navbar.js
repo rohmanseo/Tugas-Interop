@@ -49,7 +49,7 @@ class TopBar extends Component {
             />
             <div class="input-group-append">
               <button class="btn btn-primary" type="button">
-                <i class="fas fa-search fa-sm"></i>
+                <i class="fa fa-search fa-sm"></i>
               </button>
             </div>
           </div>
@@ -66,7 +66,7 @@ class TopBar extends Component {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <i class="fas fa-search fa-fw"></i>
+              <i class="fa fa-search fa-fw"></i>
             </a>
             <div
               class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
@@ -83,7 +83,7 @@ class TopBar extends Component {
                   />
                   <div class="input-group-append">
                     <button class="btn btn-primary" type="button">
-                      <i class="fas fa-search fa-sm"></i>
+                      <i class="fa fa-search fa-sm"></i>
                     </button>
                   </div>
                 </div>

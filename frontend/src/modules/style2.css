@@ -1,0 +1,31 @@
+.login {
+    background-color: white !important;
+    background-image: none !important;
+    background-size: inherit !important;
+    margin-top: 8% ;
+}
+
+.message {
+    margin-bottom: 1em !important;
+}
+
+.register{
+    background-color: white !important;
+    background-image: none !important;
+    background-size: inherit !important;
+}
+
+
+.bg-login-image{
+    background: url("../assets//img/login.png") !important;
+    background-size: cover !important;   
+}
+
+.bg-register-image{
+    background: url("../assets//img/login.png") !important;
+    background-size: cover !important; 
+}
+
+div.container.register {
+    padding-top: 8% !important;
+}

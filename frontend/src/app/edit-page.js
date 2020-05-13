@@ -18,7 +18,7 @@ class EditComponent extends Component {
 
     var token = cookies.get('access_token');
     axios
-      .get("http://127.0.0.1:8000/api/note", {
+      .get("https://notes-management.herokuapp.com/api/note", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -43,7 +43,7 @@ class EditComponent extends Component {
     };
 
     axios
-      .delete(`http://127.0.0.1:8000/api/note/${data}`, config)
+      .delete(`https://notes-management.herokuapp.com/api/note/${data}`, config)
       .then((res) => {
         console.log("delete: ", data);
         this.getAPI();
@@ -55,12 +55,7 @@ class EditComponent extends Component {
       <Fragment>
         <h1 class="h3 mb-2 mt-3 text-gray-800">Edit Notes</h1>
         <p class="mb-10">
-          DataTables is a third party plugin that is used to generate the demo
-          table below. For more information about DataTables, please visit the{" "}
-          <a target="_blank" href="https://datatables.net">
-            official DataTables documentation
-          </a>
-          .
+          Click the action button to edit or delete your current notes
         </p>
 
         <div class="card shadow mb-4">

@@ -1,0 +1,15 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.myFooter{
+    padding-right: 10em;
+}
+
+@media (min-width: 768px) {
+    .myFooter{
+        padding-right: 20em;
+    }
+}
